@@ -2,25 +2,42 @@ package com.bridgelabz.userregistration;
 
 import java.util.Scanner;
 
+import java.util.regex.Pattern;
+
 public class UserRegistration {
 	
 	public boolean validateName(String Name) {
-			
+		
 		boolean returnFlag = true;
-			if(Character.isUpperCase(Name.charAt(0))) {
+		if(Character.isUpperCase(Name.charAt(0))) {
 			
 			if(Name.length() < 3) {
 				
-				System.out.println( "First name should have minimum Three letters");
+				System.out.println( "First name should have minimum 3 letters");
 				returnFlag = false;
 			}
-			}
-			else {
-				System.out.println( "first letter Should be capittal Letters");
-				returnFlag = false;
-			}
+		}
+		else {
+			System.out.println( "First Letter Should be Capital Letter");
+			returnFlag = false;
+		}
 		return returnFlag;
 	}
+	
+	public boolean validateEmail(String email) {
+			
+		String regex = "^[A-Za-z](.+)@(.+)$"; 
+		Pattern pattern = Pattern.compile(regex); 
+		if(pattern.matcher(email).matches()) {
+			System.out.println( "True");
+			return true;
+		}
+		else {
+			System.out.println( "False");
+			return false;
+		}
+	}
+
     public static void main( String[] args ) {
         
     	UserRegistration user = new UserRegistration();
@@ -32,6 +49,27 @@ public class UserRegistration {
     		String lastName = sc.nextLine(); 
     		user.validateName(lastName);
     	}
+    	
+    	String emailId1 = "abc@yahoo.com";
+    	String emailId2 = "abc-100@yahoo.com";
+    	String emailId3 = "abc.100@yahoo.com";
+    	String emailId4 = "abc111@abc.com";
+    	String emailId5 = "abc-100@abc.net";
+    	String emailId6 = "abc.100@abc.com.au";
+    	String emailId7 = "abc@1.com";
+    	String emailId8 = "34abc@gmail.com.com";
+    	String emailId9 = ".abc+100@gmail.com";
+    	
+    	user.validateEmail(emailId1);
+    	user.validateEmail(emailId2);
+    	user.validateEmail(emailId3);
+    	user.validateEmail(emailId4);
+    	user.validateEmail(emailId5);
+    	user.validateEmail(emailId6);
+    	user.validateEmail(emailId7);
+    	user.validateEmail(emailId8);
+    	user.validateEmail(emailId9);
+    	
     	sc.close();
 	
 
