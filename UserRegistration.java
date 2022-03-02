@@ -13,19 +13,18 @@ public class UserRegistration {
 			
 			if(Name.length() < 3) {
 				
-				System.out.println( "First name should have minimum 3 letters");
+				System.out.println( "First Name Should have Minimum 3 Letters");
 				returnFlag = false;
 			}
 		}
 		else {
-			System.out.println( "First Letter Should be Capital");
+			System.out.println( "First Letter Should  be Capital");
 			returnFlag = false;
 		}
 		return returnFlag;
 	}
-	
 	public boolean validateEmail(String email) {
-			
+		
 		String regex = "^[A-Za-z](.+)@(.+)$"; 
 		Pattern pattern = Pattern.compile(regex); 
 		if(pattern.matcher(email).matches()) {
@@ -53,8 +52,9 @@ public class UserRegistration {
 	public boolean validatePassword(String password) {
 		
 		boolean returnFlag = true;
-		Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
+		Pattern UpperCasePatten = Pattern.compile("[A-Z]");
 		Pattern numericNumberPatten = Pattern.compile("[0-9 ]");
+		Pattern specialCharacterPatten = Pattern.compile("[fm][^a-zA-Z0-9]");
 		if(password.length() < 8) {
 			
 			System.out.println( "Password should have minimum 8 characters");
@@ -68,6 +68,11 @@ public class UserRegistration {
 		else if (!numericNumberPatten.matcher(password).find()){
 			
 			System.out.println("Password must have atleast one numeric number");
+			returnFlag=false;
+		}
+		else if (!specialCharacterPatten.matcher(password).find()){
+			
+			System.out.println("Password must have exactly one special character");
 			returnFlag=false;
 		}
 		return returnFlag;
@@ -107,11 +112,11 @@ public class UserRegistration {
     	user.validateEmail(emailId3);
     	user.validateEmail(emailId4);
     	user.validateEmail(emailId5);
-    	user.validateEmail(emailId6);
+       	user.validateEmail(emailId6);
     	user.validateEmail(emailId7);
     	user.validateEmail(emailId8);
     	user.validateEmail(emailId9);
     	
-    	sc.close();sc.close();
+    	sc.close();
 	}
 }
