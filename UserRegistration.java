@@ -8,17 +8,16 @@ public class UserRegistration {
 	public boolean validateName(String Name) {
 		
 		boolean returnFlag = true;
-		
 		if(Character.isUpperCase(Name.charAt(0))) {
 			
 			if(Name.length() < 3) {
 				
-				System.out.println( "First Name Should have Minimum 3 Letters");
+				System.out.println( "First name should have minimum 3 letters");
 				returnFlag = false;
 			}
 		}
 		else {
-			System.out.println( "First Letter Must be Capital");
+			System.out.println( "first letter must be caps");
 			returnFlag = false;
 		}
 		return returnFlag;
@@ -49,7 +48,17 @@ public class UserRegistration {
 			return false;
 		}
 	}
-
+	
+	public boolean validatePassword(String password) {
+		
+		if(password.length() < 8) {
+			
+			System.out.println( "Password should have minimum 8 characters");
+			return false;
+		}
+		return true;
+	}
+	
     public static void main( String[] args ) {
         
     	UserRegistration user = new UserRegistration();
@@ -59,10 +68,15 @@ public class UserRegistration {
     	if(user.validateName(firstName)) {
     		System.out.print( "Enter your last name : ");
     		String lastName = sc.nextLine(); 
-    		user.validateName(lastName);
-    		System.out.print( "Enter your Mobile Number : ");
-    		String mobNo = sc.nextLine(); 
-    		user.validateMobileNo(mobNo);
+    		if(user.validateName(lastName)) {
+	    		System.out.print( "Enter your Mobile Number : ");
+	    		String mobNo = sc.nextLine(); 
+	    		if(user.validateMobileNo(mobNo)) {
+		    		System.out.print( "Enter your Password : ");
+		    		String password = sc.nextLine(); 
+		    		user.validatePassword(password);
+	    		}
+    		}
     	}
     	
     	String emailId1 = "abc@yahoo.com";
@@ -74,7 +88,6 @@ public class UserRegistration {
     	String emailId7 = "abc@1.com";
     	String emailId8 = "34abc@gmail.com.com";
     	String emailId9 = ".abc+100@gmail.com";
-    	
     	user.validateEmail(emailId1);
     	user.validateEmail(emailId2);
     	user.validateEmail(emailId3);
@@ -86,7 +99,6 @@ public class UserRegistration {
     	user.validateEmail(emailId9);
     	
     	sc.close();
-    	
 	
 	}
 }
