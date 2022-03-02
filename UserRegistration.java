@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
+	
 	public boolean validateName(String Name) {
 		
 		boolean returnFlag = true;
@@ -17,7 +18,7 @@ public class UserRegistration {
 			}
 		}
 		else {
-			System.out.println( "first letter must be caps");
+			System.out.println( "First Letter Should be Capital");
 			returnFlag = false;
 		}
 		return returnFlag;
@@ -51,12 +52,19 @@ public class UserRegistration {
 	
 	public boolean validatePassword(String password) {
 		
+		boolean returnFlag = true;
+		Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
 		if(password.length() < 8) {
 			
 			System.out.println( "Password should have minimum 8 characters");
-			return false;
+			returnFlag = false;
 		}
-		return true;
+		else if (!UpperCasePatten.matcher(password).find()){
+
+			System.out.println("Password must have atleast one uppercase character");
+			returnFlag=false;
+		}
+		return returnFlag;
 	}
 	
     public static void main( String[] args ) {
@@ -99,6 +107,5 @@ public class UserRegistration {
     	user.validateEmail(emailId9);
     	
     	sc.close();
-	
 	}
 }
