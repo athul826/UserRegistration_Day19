@@ -5,20 +5,20 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
-	
 	public boolean validateName(String Name) {
 		
 		boolean returnFlag = true;
+		
 		if(Character.isUpperCase(Name.charAt(0))) {
 			
 			if(Name.length() < 3) {
 				
-				System.out.println( "First name should have minimum 3 letters");
+				System.out.println( "First Name Should have Minimum 3 Letters");
 				returnFlag = false;
 			}
 		}
 		else {
-			System.out.println( "First Letter Should be Capital Letter");
+			System.out.println( "First Letter Must be Capital");
 			returnFlag = false;
 		}
 		return returnFlag;
@@ -37,6 +37,18 @@ public class UserRegistration {
 			return false;
 		}
 	}
+	
+	public boolean validateMobileNo(String mobNo) {
+		
+		Pattern pattern = Pattern.compile("91[0-9]{10}");
+		if(pattern.matcher(mobNo).matches()) {
+			return true;
+		}
+		else {
+			System.out.println( "Invalid Mobile number");
+			return false;
+		}
+	}
 
     public static void main( String[] args ) {
         
@@ -48,6 +60,9 @@ public class UserRegistration {
     		System.out.print( "Enter your last name : ");
     		String lastName = sc.nextLine(); 
     		user.validateName(lastName);
+    		System.out.print( "Enter your Mobile Number : ");
+    		String mobNo = sc.nextLine(); 
+    		user.validateMobileNo(mobNo);
     	}
     	
     	String emailId1 = "abc@yahoo.com";
@@ -71,9 +86,7 @@ public class UserRegistration {
     	user.validateEmail(emailId9);
     	
     	sc.close();
+    	
 	
-
-	
-
 	}
 }
